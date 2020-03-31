@@ -1,1 +1,2 @@
-// let's go!
+// let's go
+alert('hey');
