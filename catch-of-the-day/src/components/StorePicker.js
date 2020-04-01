@@ -4,7 +4,6 @@ class StorePicker extends React.Component { //import the sausages
     render() { 
         return (
             <Fragment>
-                <p>Fish!</p>
                 <form className="store-selector">
                     <h2>Please enter a store</h2>
                     <input type="text" required placeholder="Store Name" />
