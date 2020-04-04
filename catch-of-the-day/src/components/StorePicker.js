@@ -9,9 +9,9 @@ class StorePicker extends React.Component { //import the sausages
         //1.stop the form from submitting
         event.preventDefault(); 
         //2.get the text from the input.
-        console.log(this); //it will show the instance of each component
-
+        const storeName = this.myInput.current.value; //it will show the instance of each component
         //3.Change the page to /store/whatever-they-entered
+        this.props.history.push(`/store/${storeName}`);
     }
 
     render() { 
