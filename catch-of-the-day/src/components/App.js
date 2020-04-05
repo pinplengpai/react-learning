@@ -14,15 +14,31 @@ class App extends React.Component {
 
     componentDidMount(){
         const { params } = this.props.match;
+        //first restate the localstorage
+        const localStorageRef = localStorage.getItem(params.storeId);
+        if(localStorageRef){
+            this.setState({order: JSON.parse(localStorageRef)}) // to make it as an object from string.
+        }
+        console.log(localStorageRef);
         this.ref = base.syncState(`${params.storeId}/fishes`, {
             context: this,
             state: 'fishes' 
         });
     }
 
+    componentDidUpdate(){
+        console.log(this.state.order);
+        localStorage.setItem(
+            this.props.match.params.storeId, 
+            JSON.stringify(this.state.order)
+        );        
+    }
+
     componentWillUnmount(){
         base.removeBinding(this.ref);
     }
+
+
     addFish = (fish) => {
         //1.take a copy of the existing state
         const  fishes = {...this.state.fishes };
@@ -38,6 +54,15 @@ class App extends React.Component {
         //this.state.fishes.push(fish);
         //this.state.fishes.fish1 = fish; it's ususally write in javascript
     }; 
+
+    updatedFish = (key, updatedFish) => {
+        //1.Take a copy of current state
+        const fishes = {...this.state.fishes };
+        //2.update that state
+        fishes[key] = updatedFish;
+        //3.set that to state
+        this.setState({ fishes });
+    };
 
     loadSampleFishes = () => {
         this.setState({ fishes : sampleFishes })
@@ -70,7 +95,9 @@ class App extends React.Component {
                 <Order fishes={this.state.fishes} order={this.state.order}/> {/* {...this.state} spread everything into order*/} 
                 <Inventory 
                 addFish={this.addFish} 
-                loadSampleFishes={this.loadSampleFishes } 
+                updatedFish ={this.updatedFish}
+                loadSampleFishes={this.loadSampleFishes} 
+                fishes={this.state.fishes}
                 />
             </div>
         );
