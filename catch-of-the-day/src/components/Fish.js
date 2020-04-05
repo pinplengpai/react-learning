@@ -14,7 +14,7 @@ class Fish extends React.Component {
             <li className="menu-fish">
                 <img src={image} alt={name} />
                 <h3 className="fish-name">{name}
-                    <span class="price">{formatPrice(price)}</span>
+                    <span className="price">{formatPrice(price)}</span>
                 </h3>
                 <p>{desc}</p>
                 <button disabled={!isAvailable} onClick={this.handleClick}>
