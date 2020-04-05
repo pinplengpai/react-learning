@@ -33,3 +33,7 @@ class StorePicker extends React.Component { //import the sausages
 }
 
 export default StorePicker;
+
+//state = an object that holds a data that itself need as well as some children may need or a single source of truth
+// it will update the data /value across the page
+ 
