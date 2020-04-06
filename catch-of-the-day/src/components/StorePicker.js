@@ -1,7 +1,11 @@
 import React, { Fragment } from 'react'; //make ingredient
+import PropTypes from 'prop-types';
 import { getFunName } from '../helpers';
 
 class StorePicker extends React.Component { //import the sausages 
+    static propTypes = {
+        history: PropTypes.object
+    };
 
     myInput = React.createRef();
 
